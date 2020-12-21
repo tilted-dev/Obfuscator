@@ -1,0 +1,98 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="ATS.Obfuscator.MainWindow"
+        mc:Ignorable="d"
+        Title="ATS.Obfuscator" Height="530" Width="830" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" WindowState="Normal" Icon="Resources/Icon.ico">
+    <Grid>
+        <GroupBox  Header="Консоль" Margin="370,8,2,2" Background="AliceBlue">
+            <ScrollViewer>
+                <TextBlock x:Name="ConsoleInput" Background="Transparent" TextWrapping="Wrap"/>
+            </ScrollViewer>
+        </GroupBox>
+        <Button
+          Click="ObfuscateClicked"
+          Style="{StaticResource MaterialDesignRaisedAccentButton}"
+          Height="50"
+          Width="124"
+          materialDesign:ButtonAssist.CornerRadius="25 25 0 0"
+          ToolTip="Выполняет обфускацию сборки"
+          Margin="-235,450,235,0">
+            <TextBlock Margin="10, 5, 10, 10">Начать</TextBlock>
+        </Button>
+        <Button
+            Click="ClearAssemblies"
+            Margin="205 6 0 0"
+            Height="33"
+            Width="33"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+            ToolTip="Очистить список файлов">
+            <materialDesign:PackIcon Kind="LayersOff" Height="23" Width="23" />
+        </Button>
+        <Button 
+            Click="OpenFolder"
+            Margin="245 6 0 0"
+            Height="33"
+            Width="33"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+            ToolTip="Открыть папку конечных модулей">
+            <materialDesign:PackIcon Kind="Folder" Height="23" Width="23" />
+        </Button>
+        <Button 
+            Click="ClearConsole"
+            Margin="285 6 0 0"
+            Height="33"
+            Width="33"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+            ToolTip="Очистить консоль">
+            <materialDesign:PackIcon Kind="Console" Height="23" Width="23" />
+        </Button>
+        <Button 
+            Click="InformationClicked"
+            Margin="325 6 0 0"
+            Height="33"
+            Width="33"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+            ToolTip="Информация">
+            <materialDesign:PackIcon Kind="Information" Height="23" Width="23" />
+        </Button>
+        <Button
+            Click="SelectFilesClicked"
+            Drop="OnDropFiles"
+            AllowDrop="True"
+            Margin="10,8,614,453" Height="Auto">
+            <Grid Width="214" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Margin="10, 0, 0, 0" Text="Выберите файлы"/>
+                <materialDesign:PackIcon Kind="File" HorizontalAlignment="Center" Margin="0, 0, 135, 0" Height="19" Width="19"/>
+            </Grid>
+        </Button>
+        <ListView x:Name="Assemblies" Margin="10,63,459,225">
+            <ListView.ItemContainerStyle>
+                <Style BasedOn="{StaticResource MaterialDesignListBoxItem}" TargetType="ListViewItem">
+                    <Setter Property="FontSize" Value="13"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        <CheckBox x:Name="ValuesRename"
+            Style="{StaticResource MaterialDesignCheckBox}" Margin="10,281,566,190" Content="Values Rename" />
+        <CheckBox x:Name="ConstMelting"
+                  Style="{StaticResource MaterialDesignCheckBox}" Margin="10,311,566,160" Content="Constant Melting" />
+        <CheckBox x:Name="ModuleRename"
+            Style="{StaticResource MaterialDesignCheckBox}" Margin="10,341,566,130" Content="Module Rename" />
+        <CheckBox x:Name="HideNamespace"
+            Style="{StaticResource MaterialDesignCheckBox}" Margin="10,371,566,100" Content="Hide Namespace" />
+        <CheckBox x:Name="MathChange"
+            Style="{StaticResource MaterialDesignCheckBox}" Margin="10,401,566,70" Content="Math Change" />
+        <materialDesign:DialogHost/>
+    </Grid>
+</Window>
